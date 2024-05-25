@@ -1,0 +1,48 @@
+.subscribeStock {
+  min-width: 800px;
+
+  .formControls {
+    width: 100%;
+    input {
+      height: 2rem;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 0px 10px;
+
+      &[aria-invalid="true"] {
+        border: 1px solid red;
+      }
+
+      &:focus-visible {
+        outline: none;
+      }
+
+      &::-webkit-input-placeholder {
+        font-weight: bold;
+        opacity: 0.5;
+        color: white;
+      }
+    }
+
+    input[type="submit"] {
+      width: 20%;
+    }
+  }
+
+  .error {
+    color: red;
+    height: 1rem;
+    font-size: 14px;
+  }
+  .errorBorder {
+    border: 1px solid red;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .subscribeStock {
+    min-width: 360px;
+  }
+}

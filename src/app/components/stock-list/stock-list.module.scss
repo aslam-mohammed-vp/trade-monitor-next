@@ -1,0 +1,131 @@
+// using table
+.table {
+  background-color: #fff;
+  width: 100%;
+  border-radius: 4px;
+  border-collapse: collapse;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 2px 10px rgba(0, 67, 115, 0.2);
+  color: #000;
+  min-width: 800px;
+}
+
+.header {
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 0.75rem;
+}
+
+.row {
+  border-bottom: 1px solid hsl(203, 33%, 83%);
+  height: 1rem;
+
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+.cell {
+  padding: 0.5rem 1rem;
+}
+
+.textLeft {
+  text-align: left;
+}
+
+.textRight {
+  text-align: right;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.fontMono {
+  font-family: "PT Mono", monospace;
+}
+
+.btn {
+  background-color: transparent;
+  box-shadow: 0 0 0 1px hsl(203, 100%, 38%) inset;
+  text-align: center;
+  color: hsl(203, 100%, 38%);
+  display: inline-block;
+  margin: 0;
+  padding: 6px 16px;
+  font-size: 0.75rem;
+  position: relative;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.isin {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 650px) {
+  .table {
+    font-size: 14px;
+    min-width: 330px;
+  }
+
+  .header {
+    display: none;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-column-gap: 1rem;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .cell {
+    padding: 0;
+  }
+
+  .isin {
+    grid-column: 1;
+    grid-row: span 2;
+  }
+
+  .price {
+    grid-column: 2;
+    grid-row: span 2;
+    font-size: 0.75rem;
+    padding-top: 0.125rem;
+  }
+
+  .price::before {
+    content: "Price: ";
+  }
+
+  .ask {
+    display: none;
+  }
+
+  .bid {
+    display: none;
+  }
+
+  .unsubscribe {
+    grid-column: 3;
+    grid-row: span 2;
+  }
+}
+.textCenter {
+  text-align: center;
+}
+
+.highlightRow {
+  border: 3px solid red;
+}
