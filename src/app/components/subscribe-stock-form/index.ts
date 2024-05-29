@@ -1,3 +1,3 @@
-import SubscribeStockForm from "./SubscribeStockForm";
+import SubscribeStockForm from './SubscribeStockForm';
 
 export default SubscribeStockForm;

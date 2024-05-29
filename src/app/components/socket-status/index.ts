@@ -1,3 +1,3 @@
-import { SocketStatus } from "./SocketStatus";
+import { SocketStatus } from './SocketStatus';
 
 export default SocketStatus;

@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { constants, tableHeaders } from "@/constants";
-import type { HandlerFunctionType, StockDataMap } from "@/types/types";
-import { Operation } from "@/types/types";
+import { constants, tableHeaders } from '@/constants';
+import type { HandlerFunctionType, StockDataMap } from '@/types/types';
+import { Operation } from '@/types/types';
 
-import styles from "./stock-list.module.scss";
+import styles from './stock-list.module.scss';
 
 export default function StockList({
   stockData,
@@ -42,7 +42,7 @@ export default function StockList({
           <tr
             key={id}
             className={`${styles.row} ${
-              highlightedStocks.includes(`${id}`) ? styles.highlightRow : ""
+              highlightedStocks.includes(`${id}`) ? styles.highlightRow : ''
             }`}
           >
             <td className={`${styles.cell} ${styles.isin}`}>

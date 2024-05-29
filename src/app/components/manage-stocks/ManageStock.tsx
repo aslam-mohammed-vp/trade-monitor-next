@@ -1,31 +1,31 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import useWebSocket, { ReadyState } from "react-use-websocket";
+import { useEffect, useState } from 'react';
+import useWebSocket, { ReadyState } from 'react-use-websocket';
 
-import { errorMessages } from "@/constants/constants";
+import { errorMessages } from '@/constants/constants';
 import {
   addToWatchlist,
   removeFromWatchList,
   stockDataSelector,
   updateStockData,
   watchListSelector,
-} from "@/store/features/stock/stockSlice";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { Operation } from "@/types/types";
-import { validateISIN } from "@/utils/formUtils";
+} from '@/store/features/stock/stockSlice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { Operation } from '@/types/types';
+import { validateISIN } from '@/utils/formUtils';
 
-import SocketStatus from "../socket-status";
-import StockList from "../stock-list/StockList";
-import SubscribeStockForm from "../subscribe-stock-form";
-import styles from "./manage-stocks.module.scss";
+import SocketStatus from '../socket-status';
+import StockList from '../stock-list/StockList';
+import SubscribeStockForm from '../subscribe-stock-form';
+import styles from './manage-stocks.module.scss';
 
 export default function ManageStocks() {
   const watchList = useAppSelector(watchListSelector);
   const stockData = useAppSelector(stockDataSelector);
   const dispatch = useAppDispatch();
 
-  const URL = "ws://localhost:8425/";
+  const URL = 'ws://localhost:8425/';
 
   const { sendMessage, lastMessage, readyState } = useWebSocket(URL);
 

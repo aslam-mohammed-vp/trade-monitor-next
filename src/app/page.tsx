@@ -1,5 +1,5 @@
-import ManageStocks from "./components/manage-stocks/ManageStock";
-import styles from "./page.module.scss";
+import ManageStocks from './components/manage-stocks/ManageStock';
+import styles from './page.module.scss';
 
 export default function Home() {
   return (

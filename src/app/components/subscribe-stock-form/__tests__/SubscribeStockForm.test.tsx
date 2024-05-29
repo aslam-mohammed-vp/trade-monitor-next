@@ -1,14 +1,14 @@
-import "@testing-library/jest-dom";
+import '@testing-library/jest-dom';
 
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-import SubscribeStockForm from "../SubscribeStockForm";
+import SubscribeStockForm from '../SubscribeStockForm';
 
 const mockHandleSubscribe = jest.fn();
 const mockValidateFn = jest.fn();
 
-describe("Subscribe Stock Form", () => {
+describe('Subscribe Stock Form', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -19,24 +19,24 @@ describe("Subscribe Stock Form", () => {
         handleSubscribe={mockHandleSubscribe}
       />,
     );
-  it("shows form with textbox and button", () => {
+  it('shows form with textbox and button', () => {
     renderComponent();
-    expect(screen.getByRole("textbox")).toBeInTheDocument();
-    expect(screen.getByRole("button")).toBeInTheDocument();
+    expect(screen.getByRole('textbox')).toBeInTheDocument();
+    expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
-  it("validation is working", async () => {
+  it('validation is working', async () => {
     mockValidateFn.mockImplementationOnce(() => false);
     renderComponent();
-    const btn = screen.getByRole("button");
-    const textField = screen.getByRole("textbox");
-    await userEvent.type(textField, "val");
+    const btn = screen.getByRole('button');
+    const textField = screen.getByRole('textbox');
+    await userEvent.type(textField, 'val');
     await userEvent.click(btn);
 
     expect(mockValidateFn).toHaveBeenCalled();
   });
 
-  it("Subscribe click is working", async () => {
+  it('Subscribe click is working', async () => {
     const fnn = jest.fn(() => true);
     fnn.mockImplementation(() => true);
     render(
@@ -45,9 +45,9 @@ describe("Subscribe Stock Form", () => {
         handleSubscribe={mockHandleSubscribe}
       />,
     );
-    const btn = screen.getByRole("button");
-    const textField = screen.getByRole("textbox");
-    await userEvent.type(textField, "DE000BASF111");
+    const btn = screen.getByRole('button');
+    const textField = screen.getByRole('textbox');
+    await userEvent.type(textField, 'DE000BASF111');
     await userEvent.click(btn);
 
     screen.debug();

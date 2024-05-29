@@ -6,8 +6,8 @@ export interface Stock {
 }
 
 export enum Operation {
-  Subscribe = "subscribe",
-  Unsubscribe = "unsubscribe",
+  Subscribe = 'subscribe',
+  Unsubscribe = 'unsubscribe',
 }
 
 export interface SubscriptionData {

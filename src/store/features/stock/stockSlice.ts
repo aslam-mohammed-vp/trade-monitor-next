@@ -1,8 +1,8 @@
-import type { PayloadAction } from "@reduxjs/toolkit";
-import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-import type { RootState } from "@/store/store";
-import type { Stock, StockDataMap } from "@/types/types";
+import type { RootState } from '@/store/store';
+import type { Stock, StockDataMap } from '@/types/types';
 
 interface StocklistState {
   watchlist: string[];
@@ -15,7 +15,7 @@ const initialState: StocklistState = {
 };
 
 export const stockSlice = createSlice({
-  name: "stock",
+  name: 'stock',
   initialState,
   reducers: {
     addToWatchlist: (state, action: PayloadAction<string>) => {

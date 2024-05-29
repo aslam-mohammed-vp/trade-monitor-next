@@ -1,3 +1,3 @@
-import StockList from "./StockList";
+import StockList from './StockList';
 
 export default StockList;
