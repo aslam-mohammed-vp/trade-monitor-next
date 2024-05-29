@@ -1,31 +1,10 @@
 "use client";
-import { constants, tableHeaders } from "@/constants";
-import styles from "./stock-list.module.scss";
-import { HandlerFunctionType, Operation, StockDataMap } from "@/types/types";
 
-// const gridComponent = (stockList: any, entities: any) => {
-//   return (
-//     <div>
-//       <div className={style.grid}>
-//         <span>
-//           <strong>ISIN</strong>
-//         </span>
-//         <span>
-//           <strong>PRICE</strong>
-//         </span>
-//       </div>
-//       <div className={style.rows}>
-//         {stockList?.map((id: string) => (
-//           <div key={id} className={style.grid}>
-//             <span>{entities[id].isin}</span>
-//             <span>{entities[id].price}</span>
-//           </div>
-//         ))}
-//       </div>
-//       {JSON.stringify(stockData)}
-//     </div>
-//   );
-// };
+import { constants, tableHeaders } from "@/constants";
+import type { HandlerFunctionType, StockDataMap } from "@/types/types";
+import { Operation } from "@/types/types";
+
+import styles from "./stock-list.module.scss";
 
 export default function StockList({
   stockData,
@@ -54,7 +33,8 @@ export default function StockList({
           <th className={`${styles.cell} ${styles.textRight}`}>
             {tableHeaders.bid}
           </th>
-          <th></th>
+
+          <th aria-label="Subscribe Button Column" />
         </tr>
       </thead>
       <tbody>
@@ -62,7 +42,7 @@ export default function StockList({
           <tr
             key={id}
             className={`${styles.row} ${
-              highlightedStocks.includes(id + "") ? styles.highlightRow : ""
+              highlightedStocks.includes(`${id}`) ? styles.highlightRow : ""
             }`}
           >
             <td className={`${styles.cell} ${styles.isin}`}>
@@ -82,12 +62,13 @@ export default function StockList({
             <td
               className={`${styles.cell} ${styles.unsubscribe} ${styles.textCenter}`}
             >
-              <a
+              <button
+                type="button"
                 className={styles.btn}
                 onClick={() => handleSubscribe(id, Operation.Unsubscribe)}
               >
                 {constants.unsubscribe}
-              </a>
+              </button>
             </td>
           </tr>
         ))}

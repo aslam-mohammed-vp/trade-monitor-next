@@ -1,7 +1,8 @@
+import "@testing-library/jest-dom";
+
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import "@testing-library/jest-dom";
 import SubscribeStockForm from "../SubscribeStockForm";
 
 const mockHandleSubscribe = jest.fn();
@@ -16,7 +17,7 @@ describe("Subscribe Stock Form", () => {
       <SubscribeStockForm
         validateFn={mockValidateFn}
         handleSubscribe={mockHandleSubscribe}
-      />
+      />,
     );
   it("shows form with textbox and button", () => {
     renderComponent();
@@ -42,7 +43,7 @@ describe("Subscribe Stock Form", () => {
       <SubscribeStockForm
         validateFn={fnn}
         handleSubscribe={mockHandleSubscribe}
-      />
+      />,
     );
     const btn = screen.getByRole("button");
     const textField = screen.getByRole("textbox");

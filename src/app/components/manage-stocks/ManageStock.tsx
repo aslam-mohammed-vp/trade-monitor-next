@@ -1,9 +1,9 @@
 "use client";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import StockList from "../stock-list/StockList";
-import SubscribeStockForm from "../subscribe-stock-form";
 
-import styles from "./manage-stocks.module.scss";
+import { useEffect, useState } from "react";
+import useWebSocket, { ReadyState } from "react-use-websocket";
+
+import { errorMessages } from "@/constants/constants";
 import {
   addToWatchlist,
   removeFromWatchList,
@@ -11,12 +11,14 @@ import {
   updateStockData,
   watchListSelector,
 } from "@/store/features/stock/stockSlice";
-import { useEffect, useState } from "react";
-import useWebSocket, { ReadyState } from "react-use-websocket";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Operation } from "@/types/types";
-import SocketStatus from "../socket-status/";
 import { validateISIN } from "@/utils/formUtils";
-import { errorMessages } from "@/constants/constants";
+
+import SocketStatus from "../socket-status";
+import StockList from "../stock-list/StockList";
+import SubscribeStockForm from "../subscribe-stock-form";
+import styles from "./manage-stocks.module.scss";
 
 export default function ManageStocks() {
   const watchList = useAppSelector(watchListSelector);
@@ -39,26 +41,25 @@ export default function ManageStocks() {
         dispatch(removeFromWatchList(id));
         break;
       default:
-        console.error("unsupported operation");
+        break;
     }
   };
 
   useEffect(() => {
-    console.log(lastMessage);
     if (lastMessage?.data) {
       const data = JSON.parse(lastMessage?.data);
-      if (watchList.includes(data.isin + "")) {
+      if (watchList.includes(`${data.isin}`)) {
         dispatch(updateStockData(data));
       }
     }
-  }, [lastMessage]);
+  }, [lastMessage, watchList, dispatch]);
 
   useEffect(() => {
     if (watchList.length >= 1)
       sendMessage(
-        `{"${Operation.Subscribe}": "${watchList[watchList.length - 1]}"}`
+        `{"${Operation.Subscribe}": "${watchList[watchList.length - 1]}"}`,
       );
-  }, [watchList]);
+  }, [watchList, sendMessage, dispatch]);
 
   const validate = (isin: string) => {
     const message = validateISIN(isin, watchList);
@@ -74,7 +75,7 @@ export default function ManageStocks() {
   return (
     <div className={styles.manageStocks}>
       <div>
-        <SocketStatus status={readyState === ReadyState.OPEN ? true : false} />
+        <SocketStatus status={readyState === ReadyState.OPEN} />
       </div>
       <div className={styles.center}>
         <SubscribeStockForm

@@ -1,8 +1,13 @@
 "use client";
-import styles from "./subscribe-stock-form.module.scss";
-import { SubmitHandler, Validate, useForm } from "react-hook-form";
-import { HandlerFunctionType, Operation } from "@/types/types";
+
+import type { SubmitHandler, Validate } from "react-hook-form";
+import { useForm } from "react-hook-form";
+
 import constants from "@/constants/constants";
+import type { HandlerFunctionType } from "@/types/types";
+import { Operation } from "@/types/types";
+
+import styles from "./subscribe-stock-form.module.scss";
 
 type Inputs = {
   isin: string;
@@ -23,7 +28,6 @@ export default function SubscribeStockForm({
   } = useForm<Inputs>({ reValidateMode: "onSubmit" });
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log("came here with isValid", errors);
     if (isValid) handleSubscribe(data.isin, Operation.Subscribe);
     reset();
   };
@@ -35,7 +39,7 @@ export default function SubscribeStockForm({
           <input
             type="text"
             placeholder={constants.placeHolder}
-            aria-invalid={errors.isin ? true : false}
+            aria-invalid={!!errors.isin}
             {...register("isin", { required: true, validate: validateFn })}
           />
           <input

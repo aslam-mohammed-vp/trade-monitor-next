@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+
 import stockSlice from "./features/stock/stockSlice";
 
 export const createStore = () => {
   return configureStore({
     reducer: {
-      stockSlice: stockSlice,
+      stockSlice,
     },
   });
 };

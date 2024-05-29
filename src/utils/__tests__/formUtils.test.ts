@@ -1,4 +1,5 @@
 import { errorMessages } from "@/constants";
+
 import { validateISIN } from "../formUtils";
 
 describe("formUtils", () => {
@@ -12,7 +13,7 @@ describe("formUtils", () => {
 
   it("ValidateISIN returns message for an existing subscription", () => {
     expect(validateISIN("DE000BASF111", ["DE000BASF111"])).toBe(
-      errorMessages.existingISIN
+      errorMessages.existingISIN,
     );
   });
 });
